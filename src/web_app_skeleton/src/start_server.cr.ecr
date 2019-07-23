@@ -1,9 +1,10 @@
 require "./app"
 
+Habitat.raise_if_missing_settings!
+
 if Lucky::Env.development?
   Avram::Migrator::Runner.new.ensure_migrated!
 end
-Habitat.raise_if_missing_settings!
 
 app_server = AppServer.new
 <%- if !proxied_through_browsersync? -%>
